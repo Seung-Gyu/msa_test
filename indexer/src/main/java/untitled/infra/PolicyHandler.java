@@ -26,13 +26,15 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='FileUploaded'"
     )
-    public void wheneverFileUploaded_Index(@Payload FileUploaded fileUploaded) {
+    public void wheneverFileUploaded_MakeIndex(
+        @Payload FileUploaded fileUploaded
+    ) {
         FileUploaded event = fileUploaded;
         System.out.println(
-            "\n\n##### listener Index : " + fileUploaded + "\n\n"
+            "\n\n##### listener MakeIndex : " + fileUploaded + "\n\n"
         );
 
         // Sample Logic //
-        Index.index(event);
+        Index.makeIndex(event);
     }
 }
